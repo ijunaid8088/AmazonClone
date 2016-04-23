@@ -37,8 +37,8 @@ UserSchema.pre("save", function(next){
 	});
 });
 
-
-
-
 // Compare the password that saved in Database and the one user entered
 
+UserSchema.methods.comparePassword = function(password) {
+	return bcrypt.compareSync(password, this.password);
+};
