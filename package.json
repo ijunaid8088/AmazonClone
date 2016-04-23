@@ -1,0 +1,19 @@
+{
+  "name": "amzoneclone",
+  "version": "1.0.0",
+  "description": "This is AmazonClone with Stripe Methods",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ijunaidfarooq/AmazonClone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ijunaidfarooq/AmazonClone/issues"
+  },
+  "homepage": "https://github.com/ijunaidfarooq/AmazonClone#readme"
+}
