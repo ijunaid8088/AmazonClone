@@ -26,9 +26,16 @@ app.use(bodyParser.urlencoded({ entended: true }));
 
 // Testing route for user Schema
 
-app.post("create-user", function(req, res){
+app.post("/create-user", function(req, res, next){
 	var user = new User();
-	user.profile.name
+	user.profile.name = req.body.name;
+	user.email = req.body.email;
+	user.password = req.body.password;
+
+	user.save(function(err) {
+		if (err) next(err);
+		res.json(err);
+	});
 });
 
 // created 3000 port as server
