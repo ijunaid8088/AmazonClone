@@ -1,1 +1,1 @@
-#Amazon Clone with Stripe Methods
+#Amazon Clone with Stripe
