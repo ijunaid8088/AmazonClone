@@ -4,8 +4,7 @@ var express = require("express"),
 		bodyParser = require("body-parser"),
 		ejs = require("ejs"),
 		engine = require("ejs-mate"),
-		app = express(),
-		User = require("./models/user");
+		app = express();
 
 
 // connecting MongoLabs
@@ -28,23 +27,11 @@ app.use(bodyParser.urlencoded({ entended: true }));
 app.engine("ejs", engine);
 app.set("view engine", "ejs");
 
-// Testing route for user Schema
+var mainRoutes = require("./routes/main");
+var userRoutes = require("./routes/user");
 
-app.post("/create-user", function(req, res, next){
-	var user = new User();
-	user.profile.name = req.body.name;
-	user.email = req.body.email;
-	user.password = req.body.password;
-
-	user.save(function(err) {
-		if (err) return next(err);
-		res.json(err);
-	});
-});
-
-app.get("/", function(req, res){
-	res.render("main/home");
-});
+app.use(mainRoutes);
+app.use(userRoutes);
 
 // created 3000 port as server
 
