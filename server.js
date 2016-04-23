@@ -2,6 +2,8 @@ var express = require("express"),
 		morgan = require("morgan"),
 		mongoose = require("mongoose"),
 		bodyParser = require("body-parser"),
+		ejs = require("ejs"),
+		ejsMate = require("ejs-mate"),
 		app = express(),
 		User = require("./models/user");
 
@@ -33,7 +35,7 @@ app.post("/create-user", function(req, res, next){
 	user.password = req.body.password;
 
 	user.save(function(err) {
-		if (err) next(err);
+		if (err) return next(err);
 		res.json(err);
 	});
 });
