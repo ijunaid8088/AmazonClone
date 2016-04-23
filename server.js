@@ -3,7 +3,7 @@ var express = require("express"),
 		mongoose = require("mongoose"),
 		bodyParser = require("body-parser"),
 		ejs = require("ejs"),
-		ejsMate = require("ejs-mate"),
+		engine = require("ejs-mate"),
 		app = express(),
 		User = require("./models/user");
 
@@ -21,10 +21,12 @@ mongoose.connect("mongodb://root:123456@ds019268.mlab.com:19268/amazonclone", fu
 
 // Middleware
 
+app.use(express.static(__dirname + "/public"));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ entended: true }));
-
+app.engine("ejs", engine);
+app.set("view engine", "ejs");
 
 // Testing route for user Schema
 
@@ -38,6 +40,10 @@ app.post("/create-user", function(req, res, next){
 		if (err) return next(err);
 		res.json(err);
 	});
+});
+
+app.get("/", function(req, res){
+	res.render("main/home");
 });
 
 // created 3000 port as server
