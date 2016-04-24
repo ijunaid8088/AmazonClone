@@ -4,7 +4,7 @@ var express = require("express"),
 		bodyParser = require("body-parser"),
 		ejs = require("ejs"),
 		engine = require("ejs-mate"),
-		session = require("session"),
+		session = require("express-session"),
 		cookieParser = require("cookie-parser"),
 		flash = require("express-flash"),
 		app = express();
@@ -27,6 +27,15 @@ app.use(express.static(__dirname + "/public"));
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ entended: true }));
+app.use(cookieParser());
+app.use(session({
+	resave: true,
+	saveUninitialized: true,
+	secret: "Junaid@unaid"
+}));
+app.use(flash());
+
+
 app.engine("ejs", engine);
 app.set("view engine", "ejs");
 
