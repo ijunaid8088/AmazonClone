@@ -4,6 +4,9 @@ var express = require("express"),
 		bodyParser = require("body-parser"),
 		ejs = require("ejs"),
 		engine = require("ejs-mate"),
+		session = require("session"),
+		cookieParser = require("cookie-parser"),
+		flash = require("express-flash"),
 		app = express();
 
 
