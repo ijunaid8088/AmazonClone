@@ -7,12 +7,13 @@ var express = require("express"),
 		session = require("express-session"),
 		cookieParser = require("cookie-parser"),
 		flash = require("express-flash"),
+		secret = require("./config/secret"),
 		app = express();
 
 
 // connecting MongoLabs
 
-mongoose.connect("mongodb://root:123456@ds019268.mlab.com:19268/amazonclone", function(err){
+mongoose.connect(secret.database, function(err){
 	if (err) {
 		console.log(err);
 	}
@@ -31,7 +32,7 @@ app.use(cookieParser());
 app.use(session({
 	resave: true,
 	saveUninitialized: true,
-	secret: "Junaid@unaid"
+	secret: secret.secretKey
 }));
 app.use(flash());
 
@@ -47,7 +48,7 @@ app.use(userRoutes);
 
 // created 3000 port as server
 
-app.listen(3000, function(err){
+app.listen(secret.port, function(err){
 	if (err) throw error;
 	console.log("Server is running");
 });
